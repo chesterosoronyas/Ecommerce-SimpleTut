@@ -1,13 +1,36 @@
 import "./default.scss";
-import Header from "./components/Header";
+import { Route, Switch } from "react-router-dom";
+
+//layouts
+import MainLayout from "./layouts/MainLayout";
+import HomepageLayout from "./layouts/HomepageLayout";
+
+//pages
 import HomePage from "./components/pages/HomePage";
+import Registration from "./components/pages/Registration";
+
 function App() {
   return (
     <div className="App">
-      <Header />
-      <div className="main">
-        <HomePage />
-      </div>
+      <Switch>
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <HomepageLayout>
+              <HomePage />
+            </HomepageLayout>
+          )}
+        />
+        <Route
+          path="/registration"
+          render={() => (
+            <MainLayout>
+              <Registration />
+            </MainLayout>
+          )}
+        />
+      </Switch>
     </div>
   );
 }
